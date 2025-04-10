@@ -100,8 +100,39 @@ for bar in bars:
 plt.tight_layout()
 plt.show()
 ```
+### ١٠. إضافة ملفات جديدة (دمج ملفات CSV):
+لإضافة ملفات جديدة ودمجها مع البيانات الحالية، نستخدم pd.concat() لدمج البيانات من عدة ملفات:
+```python
+df_old = pd.read_csv('/mnt/data/log_data.csv')
+df_new = pd.read_csv('/mnt/data/new_log_data.csv')
 
+df = pd.concat([df_old, df_new], ignore_index=True)
+```
 
+### ١١. ترميز الأعمدة الفئوية:
+يمكنك إضافة أعمدة جديدة تحتوي على قيم غير رقمية (مثل user_agent أو ip_address)، ثم تحويل هذه القيم إلى تمثيل رقمي باستخدام LabelEncoder أو OneHotEncoder
+* LabelEncoder
+```python
+label_encoder = LabelEncoder()
+df['user_agent_encoded'] = label_encoder.fit_transform(df['user_agent'])
+```
+* OneHotEncoder
+```python
+onehot_encoder = OneHotEncoder(sparse=False)
+encoded_ip = onehot_encoder.fit_transform(df[['ip_address']])
+encoded_ip_df = pd.DataFrame(encoded_ip, columns=onehot_encoder.categories_[0])
+df_encoded = pd.concat([df, encoded_ip_df], axis=1)
+```
+
+### الخلاصة :
+* تحميل البيانات، تقسيمها إلى مجموعات تدريب واختبار.
+* تدريب نموذج "غابة الأشجار العشوائية" لاكتشاف الهجمات.
+* استخدام مقاييس متعددة مثل الدقة، الاسترجاع، والـ F1 لتقييم أداء النموذج.
+* عرض نتائج التصنيف باستخدام الرسم البياني.
+
+#### نصائح لإضافة ملفات جديدة:
+* لتضمين ملفين أو أكثر من البيانات، استخدم pd.concat().
+* تأكد من تنسيق الأعمدة الفئوية بشكل صحيح باستخدام OneHotEncoder أو LabelEncoder.
 
 
 
