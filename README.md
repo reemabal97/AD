@@ -23,9 +23,26 @@
   df = pd.read_csv('/Users/reemabalharith/Desktop/log_data.csv')
 ```
 * استبدل رابط الملف  برابطك الخاص
+  
 ### ٢. استكشاف البيانات
 * نستخدم df.head() لعرض أول 5 صفوف من البيانات للتأكد من شكل البيانات وفهمها سريعًا.
 ```python
   print(df.head())
 ```
+
+### ٣. تحديد الخصائص والهدف:
+* X: يحتوي على الأعمدة التي تمثل الخصائص التي ستُستخدم للتنبؤ (مثل: open_ports, login_attempts).
+* y: يحتوي على العمود الذي نريد التنبؤ به، وهو is_attack.
+
+```python
+X = df[['open_ports', 'login_attempts', 'data_transferred_MB', 'login_time_hour']]
+y = df['is_attack']
+```
+
+### ٤. تقسيم البيانات إلى تدريب واختبار:
+نستخدم train_test_split لتقسيم البيانات إلى:
+* X_train و y_train: لاستخدامها في تدريب النموذج.
+* X_test و y_test: لاختبار دقة النموذج بعد تدريبه.
+
+
 
