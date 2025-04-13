@@ -134,7 +134,7 @@ df_encoded = pd.concat([df, encoded_ip_df], axis=1)
 * لتضمين ملفين أو أكثر من البيانات، استخدم pd.concat().
 * تأكد من تنسيق الأعمدة الفئوية بشكل صحيح باستخدام OneHotEncoder أو LabelEncoder.
 
-# مثال على الناتج (Outut) المتوقع :
+# مثال على الناتج (Output) المتوقع :
 <img src="https://github.com/user-attachments/assets/40c23bde-b0e6-4432-8e4c-e6fd6c7de8ee" alt="Value Counts Output" width="600"/>
 <img src="https://github.com/user-attachments/assets/d4f63d19-ec47-4fc6-b99c-898ef3c5c2e2" width="600"/>
 
